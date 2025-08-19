@@ -2,8 +2,10 @@
   "name": "s72_dhruv_malviya_roastbot_cli_gen_ai",
   "version": "1.0.0",
   "description": "**RoastBot CLI** is a terminal-based AI that slaps you with brutal honesty before patching you up with wholesome validation. Think of it as the friend who dunks on your life choices but still shows up with ice cream afterward.",
-  "main": "index.js",
+  "main": "cli.js",
+  "type": "module",
   "scripts": {
+    "start": "node cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
