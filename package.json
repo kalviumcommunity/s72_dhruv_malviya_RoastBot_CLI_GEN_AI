@@ -1,0 +1,25 @@
+{
+  "name": "s72_dhruv_malviya_roastbot_cli_gen_ai",
+  "version": "1.0.0",
+  "description": "**RoastBot CLI** is a terminal-based AI that slaps you with brutal honesty before patching you up with wholesome validation. Think of it as the friend who dunks on your life choices but still shows up with ice cream afterward.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalviumcommunity/s72_dhruv_malviya_RoastBot_CLI_GEN_AI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kalviumcommunity/s72_dhruv_malviya_RoastBot_CLI_GEN_AI/issues"
+  },
+  "homepage": "https://github.com/kalviumcommunity/s72_dhruv_malviya_RoastBot_CLI_GEN_AI#readme",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.2.1",
+    "readline-sync": "^1.4.10"
+  }
+}
