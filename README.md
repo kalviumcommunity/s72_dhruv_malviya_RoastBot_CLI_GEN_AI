@@ -78,5 +78,3 @@ Result: burns that sting *and* compliments that land.
 Still under construction 🚀 — being built as part of a mentor-guided AI project.
 
 ---
-
-Would you like me to also add **installation + usage instructions** (fake/demo style for now), so it feels more like a real open-source README? That would make it feel instantly "GitHub-ready."
