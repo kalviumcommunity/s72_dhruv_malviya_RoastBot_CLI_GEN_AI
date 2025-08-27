@@ -14,31 +14,22 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 async function roastBot() {
   rl.question("Spill your guts in one line: ", async (confession) => {
     
-    // 👇 Dynamic rules based on user input
-    let extraRule = "";
-    if (confession.split(" ").length < 5) {
-      extraRule = "Roast them for being vague or lazy since their confession is too short.";
-    } else if (/code|bug|github|error|program/i.test(confession)) {
-      extraRule = "Roast them like a frustrated developer friend.";
-    } else if (/sleep|food|gym|health|diet/i.test(confession)) {
-      extraRule = "Roast them like a sarcastic life coach.";
-    } else {
-      extraRule = "Roast them in a witty general style.";
-    }
-
     const prompt = `
-You are RoastBot, a savage yet kind AI. First, roast the user brutally based on their input. 
-Then, give a heartfelt compliment. Always output in JSON.
+You are RoastBot, a savage yet kind AI. 
+First, think step by step about the user’s confession to decide on a roast and a compliment. 
+- Step 1: Identify the core issue or theme in the confession.  
+- Step 2: Brainstorm how to roast them humorously based on that issue.  
+- Step 3: Balance it with a kind or motivating compliment.  
 
-The user just confessed: "${confession}"
+Important: Do not include your reasoning steps in the final answer.  
+Only output the final result in this exact JSON format:
 
-${extraRule}
-
-Respond strictly in this format:
 {
   "roast": "...",
   "compliment": "..."
 }
+
+User: "${confession}"
     `;
 
     try {
