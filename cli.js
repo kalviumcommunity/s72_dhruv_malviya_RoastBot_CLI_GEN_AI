@@ -13,46 +13,46 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 async function roastBot() {
   rl.question("Spill your guts in one line: ", async (confession) => {
+    
+    // 👇 Dynamic rules based on user input
+    let extraRule = "";
+    if (confession.split(" ").length < 5) {
+      extraRule = "Roast them for being vague or lazy since their confession is too short.";
+    } else if (/code|bug|github|error|program/i.test(confession)) {
+      extraRule = "Roast them like a frustrated developer friend.";
+    } else if (/sleep|food|gym|health|diet/i.test(confession)) {
+      extraRule = "Roast them like a sarcastic life coach.";
+    } else {
+      extraRule = "Roast them in a witty general style.";
+    }
+
     const prompt = `
 You are RoastBot, a savage yet kind AI. First, roast the user brutally based on their input. 
-Then, give a heartfelt compliment. Output in JSON.
+Then, give a heartfelt compliment. Always output in JSON.
 
-Example:
-User: "I always forget to push my code to GitHub."
+The user just confessed: "${confession}"
+
+${extraRule}
+
+Respond strictly in this format:
 {
-  "roast": "You’re basically holding your commits hostage like a bad movie villain.",
-  "compliment": "But hey, at least you’re writing code worth committing in the first place."
+  "roast": "...",
+  "compliment": "..."
 }
-
-User: "I spend more time Googling errors than coding."
-{
-  "roast": "You’re basically a professional copy-paster with a minor in panic Googling.",
-  "compliment": "But hey, at least you know how to find answers — that’s a real dev skill."
-}
-
-User: "My laptop crashes whenever I open Chrome."
-{
-  "roast": "Your laptop sees Chrome and files for early retirement.",
-  "compliment": "But hey, at least you’re ambitious enough to multitask."
-}
-
-Now do the same for this input:
-User: "${confession}"
     `;
 
-try {
-  const result = await model.generateContent(prompt);
-  const text = result.response.text();
-  console.log("\n🔥 RoastBot CLI 🔥");
-  console.log(text);
-} catch (error) {
-  if (error.status === 503) {
-    console.error("⚠️ RoastBot is overloaded. Please try again in a few seconds.");
-  } else {
-    console.error("❌ Unexpected error:", error.message || error);
-  }
-}
-
+    try {
+      const result = await model.generateContent(prompt);
+      const text = result.response.text();
+      console.log("\n🔥 RoastBot CLI 🔥");
+      console.log(text);
+    } catch (error) {
+      if (error.status === 503) {
+        console.error("⚠️ RoastBot is overloaded. Please try again in a few seconds.");
+      } else {
+        console.error("❌ Unexpected error:", error.message || error);
+      }
+    }
 
     rl.close();
   });
